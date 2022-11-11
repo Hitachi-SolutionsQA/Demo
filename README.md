@@ -1,4 +1,4 @@
-#Getting Started
+# **Getting Started**
 
 >1. Make sure user is authenticated in Tools->Options->Azure Service Authentication
 >2. Make sure user has contributor access to the [Fuctional Testing](https://dev.azure.com/HitachiQA/Functional%20Testing) project in ADO
