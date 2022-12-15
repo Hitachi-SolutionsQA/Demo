@@ -35,7 +35,7 @@ namespace Demo.StepDefinition
         {
             try
             {
-                expectedFilePath = Path.GetFullPath($"..\\Data\\Expected\\{fileName}");
+                expectedFilePath = Path.GetFullPath($"Data\\Expected\\{fileName}");
             }
             catch
             {
@@ -49,7 +49,7 @@ namespace Demo.StepDefinition
         {
             try
             {
-                actualFilePath = Path.GetFullPath($"..\\Data\\Actual\\{fileName}");
+                actualFilePath = Path.GetFullPath($"Data\\Actual\\{fileName}");
             }
             catch
             {

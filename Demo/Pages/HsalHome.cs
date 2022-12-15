@@ -7,7 +7,6 @@ namespace Demo.Pages
     {
         public HsalHome(ObjectContainer OC) : base(OC)
         {
-            
         }
         public string URL_PATH = "/";
         public void navigate() => UserActions.Navigate(URL_PATH);
