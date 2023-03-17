@@ -2,10 +2,9 @@
 <RunSettings>
 	<RunConfiguration>
 		<EnvironmentVariables>
-			<HOST>https://www.hitachi.us</HOST>
+			<HOST>https://mddev7a29df073d88851fdevaos.cloudax.dynamics.com/?cmp=usmf</HOST>
 			<SERVER_HOST>TBD</SERVER_HOST>
 			<BROWSER>Chrome</BROWSER>
-			<OPTIONS>--incognito</OPTIONS>
 		</EnvironmentVariables>
 	</RunConfiguration>
 </RunSettings>

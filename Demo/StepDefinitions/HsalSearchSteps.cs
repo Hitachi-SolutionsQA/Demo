@@ -33,7 +33,7 @@ namespace Demo.StepDefinition
         [When(@"user types '([^']*)' in searchbox")]
         public void WhenUserTypesInSearchbox(string searchCriteria)
         {
-            HsalHome.SearchInput.setText(searchCriteria);
+            HsalHome.SearchInput.SetFieldValue(searchCriteria);
             this.searchCriteria = searchCriteria;
         }
 
