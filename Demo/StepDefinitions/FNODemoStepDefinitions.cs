@@ -12,6 +12,7 @@ namespace Demo.StepDefinitions
         {
             this.Page = Page;  
         }
+
         [Then(@"user should be signed into FNO")]
         public void ThenUserShouldBeSignedIntoFNO() => GivenUserIsInFNO();
 
@@ -27,13 +28,47 @@ namespace Demo.StepDefinitions
             this.Page.GetElement("Bank management").Click();
             this.Page.GetElement("All bank accounts").Click();
             this.Page.Grid.OpenGridRecord(0);
-
         }
 
         [Then(@"a new timesheet should be created")]
         public void ThenANewTimesheetShouldBeCreated()
         {
             Thread.Sleep(5000);
+        }
+
+        [Given(@"user selects '([^']*)' from left navigation")]
+        public void GivenUserSelectsFromLeftNavigation(string leftNavItem)
+        {
+            this.Page.GetLeftNavMdodule(leftNavItem).Click();
+        }
+
+        [Given(@"user selects '([^']*)' Module")]
+        public void GivenUserSelectsModule(string moduleName)
+        {
+            Page.GetModuleByName(moduleName).Click();
+        }
+
+        [Given(@"user selects '([^']*)' button")]
+        public void GivenUserSelectsButton(string buttonText)
+        {
+            Page.GetElement(buttonText).Click();
+        }
+
+        [When(@"user creates new purchase order")]
+        public void WhenUserCreatesNewPurchaseOrder()
+        {
+            Page.GetElement("New").Click();
+            Page.GetField("Vendor account").SetFieldValue("0001");
+            Page.GetElementByControlName("OK").Click();
+            Page.GetField("Item number").SetFieldValue("1000");
+            Page.GetField("Site").SetFieldValue("4");
+            Page.GetElement("Save").Click();
+        }
+
+        [Then(@"user validates purchase order saved")]
+        public void ThenUserValidatesPurchaseOrderSaved()
+        {
+            //
         }
 
     }

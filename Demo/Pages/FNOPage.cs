@@ -18,7 +18,20 @@ namespace Demo.Pages
 
         public Element GetElement(string text)
         {
-            return this.Element($"//*[normalize-space(text())='{text}']");
+            return this.Element($"//*[normalize-space(text())='{text}'] |" +
+                                $"//*[@role='link'][descendant::*[text()='{text}']] |" +
+                                $"//button[descendant::*[text()='{text}']]");
+        }
+
+        public Element GetLeftNavMdodule(string navItem)
+        {
+            this.Element("//*[@aria-label='Expand the navigation pane']").Click();
+            return this.Element($"//*[@aria-label='{navItem}']");
+        }
+
+        public Element GetModuleByName(string moduleName)
+        {
+            return this.Element($"//*[@data-dyn-title='{moduleName}']");
         }
     }
 }
