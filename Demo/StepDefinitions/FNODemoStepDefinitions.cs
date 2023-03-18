@@ -39,7 +39,7 @@ namespace Demo.StepDefinitions
         [Given(@"user selects '([^']*)' from left navigation")]
         public void GivenUserSelectsFromLeftNavigation(string leftNavItem)
         {
-            this.Page.GetLeftNavMdodule(leftNavItem).Click();
+            Page.GetLeftNavMdodule(leftNavItem).Click();
         }
 
         [Given(@"user selects '([^']*)' Module")]
@@ -71,6 +71,5 @@ namespace Demo.StepDefinitions
         {
             //
         }
-
     }
 }
