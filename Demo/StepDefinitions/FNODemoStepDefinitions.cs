@@ -58,6 +58,7 @@ namespace Demo.StepDefinitions
         public void WhenUserCreatesNewPurchaseOrder()
         {
             Page.GetElement("New").Click();
+            Thread.Sleep(500);
             Page.GetField("Vendor account").SetFieldValue("0001");
             Page.GetElementByControlName("OK").Click();
             Page.GetField("Item number").SetFieldValue("1000");
