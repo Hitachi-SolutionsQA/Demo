@@ -31,7 +31,7 @@ stages:
           inputs:
             command: 'build'
             arguments: '--configuration $(buildConfiguration)'
-            projects: '$(project)'
+            projects: '$(solution)'
             feedsToUse: config
           displayName: 'dotnet build $(buildConfiguration)'
         
