@@ -1,4 +1,5 @@
 ﻿using BoDi;
+using HitachiQA;
 using HitachiQA.Dynamics.FS.Pages;
 using HitachiQA.Hooks;
 using Microsoft.Extensions.Configuration;
@@ -27,14 +28,14 @@ namespace Demo.Hooks
             {
                 return;
             }
-
+            ;
             Dyn_LoginPage Page = objectContainer.Resolve<Dyn_LoginPage>();
-            Page.UsernameTextField.setText(Config["dynamics.username"]);
+            Page.UsernameTextField.setText(Config.GetVariable("dynamics.username"));
 
             //Next button
             Page.SubmitButton.Click();
 
-            Page.PasswordTextField.setText(Config["dynamics.password"]);
+            Page.PasswordTextField.setText(Config.GetVariable("dynamics.password"));
 
             //Sign in button
             Page.SubmitButton.Click();
