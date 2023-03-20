@@ -33,7 +33,7 @@ stages:
             arguments: '--configuration $(buildConfiguration)'
             projects: '$(solution)'
             feedsToUse: config
-            nugetConfigPath: '$(System.DefaultWorkingDirectory)/Demo/Demo/Nuget.config'
+            nugetConfigPath: '$(System.DefaultWorkingDirectory)/Demo/Nuget.config'
           displayName: 'dotnet restore $(buildConfiguration)'
 
         - task: DotNetCoreCLI@2
