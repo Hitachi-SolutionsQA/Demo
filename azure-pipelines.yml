@@ -29,11 +29,18 @@ stages:
 
         - task: DotNetCoreCLI@2
           inputs:
-            command: 'build'
+            command: 'restore'
             arguments: '--configuration $(buildConfiguration)'
             projects: '$(solution)'
             feedsToUse: config
             nugetConfigPath: '$(System.DefaultWorkingDirectory)\Demo\Nuget.config'
+          displayName: 'dotnet restore $(buildConfiguration)'
+
+        - task: DotNetCoreCLI@2
+          inputs:
+            command: 'build'
+            arguments: '--configuration $(buildConfiguration)'
+            projects: '$(solution)'
           displayName: 'dotnet build $(buildConfiguration)'
         
         - task: PublishBuildArtifacts@1
