@@ -33,7 +33,7 @@ stages:
             arguments: '--configuration $(buildConfiguration)'
             projects: '$(solution)'
             feedsToUse: config
-            nugetConfigPath: 'Demo\Nuget.config'
+            nugetConfigPath: '$(System.DefaultWorkingDirectory)\Demo\Nuget.config'
           displayName: 'dotnet build $(buildConfiguration)'
         
         - task: PublishBuildArtifacts@1
