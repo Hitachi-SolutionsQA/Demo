@@ -77,8 +77,8 @@ namespace Demo.StepDefinitions
             var element = Page.GetElementByControlName("HeaderTitle").GetElementText();
             var orderNumber = string.Concat(element.TakeWhile((c) => c != ' '));
 
-            Page.NavigateBack();
-            Page.SetGridQuickFilterValue("Purchase order", orderNumber);
+            //Page.NavigateBack();
+            //Page.SetGridQuickFilterValue("Purchase order", orderNumber);
             Page.GetGrid("All purchase orders").SelectGridRecord(2);
             Page.ScreenShot.Info();
             
