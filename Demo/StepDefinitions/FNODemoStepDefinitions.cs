@@ -1,4 +1,8 @@
 using Demo.Pages;
+using HitachiQA.Driver;
+using HitachiQA.Helpers;
+using Microsoft.Azure.Cosmos.Linq;
+using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
 
@@ -10,7 +14,7 @@ namespace Demo.StepDefinitions
         public FNOPage Page { get; set; }
         public FNODemoStepDefinitions(FNOPage Page)
         {
-            this.Page = Page;  
+            this.Page = Page;
         }
 
         [Then(@"user should be signed into FNO")]
@@ -62,6 +66,7 @@ namespace Demo.StepDefinitions
             Page.GetField("Vendor account").SetFieldValue("0001");
             Page.GetElementByControlName("OK").Click();
             Page.GetField("Item number").SetFieldValue("1000");
+            Thread.Sleep(800);
             Page.GetField("Site").SetFieldValue("4");
             Page.GetElement("Save").Click();
         }
@@ -69,7 +74,13 @@ namespace Demo.StepDefinitions
         [Then(@"user validates purchase order saved")]
         public void ThenUserValidatesPurchaseOrderSaved()
         {
-            //
+            var element = Page.GetElementByControlName("HeaderTitle").GetElementText();
+            var orderNumber = string.Concat(element.TakeWhile((c) => c != ' '));
+
+            Page.NavigateBack();
+            Page.SetGridQuickFilterValue("Purchase order", orderNumber);
+            Page.GetGrid("All purchase orders").SelectGridRecord(2);
+            Page.ScreenShot.Info();
         }
     }
 }
