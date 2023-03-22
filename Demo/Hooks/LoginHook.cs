@@ -28,7 +28,7 @@ namespace Demo.Hooks
             {
                 return;
             }
-            ;
+            
             Dyn_LoginPage Page = objectContainer.Resolve<Dyn_LoginPage>();
             Page.UsernameTextField.setText(Config.GetVariable("dynamics.username"));
 
