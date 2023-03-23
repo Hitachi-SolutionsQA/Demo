@@ -66,8 +66,8 @@ namespace Demo.StepDefinitions
             Page.GetField("Vendor account").SetFieldValue("0001");
             Page.GetElementByControlName("OK").Click();
             Page.GetField("Item number").SetFieldValue("1000");
-            Thread.Sleep(800);
-            Page.GetField("Site").SetFieldValue("4");
+            Page.GetField("Site").setText("4");
+            Page.GetElementByTitle("Auto system production").Click();
             Page.GetElement("Save").Click();
         }
 
@@ -75,11 +75,11 @@ namespace Demo.StepDefinitions
         public void ThenUserValidatesPurchaseOrderSaved()
         {
             var element = Page.GetElementByControlName("HeaderTitle").GetElementText();
-            var orderNumber = string.Concat(element.TakeWhile((c) => c != ' '));
+            var orderNumber = string.Concat(element.TakeWhile((a) => a != ' '));
 
             Page.NavigateBack();
             Page.SetGridQuickFilterValue("Purchase order", orderNumber);
-            Page.GetGrid("All purchase orders").SelectGridRecord(2);
+            Page.GetGridRowByGridName("All purchase orders", 2);
             Page.ScreenShot.Info();
         }
     }
