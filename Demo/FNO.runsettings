@@ -2,7 +2,7 @@
 <RunSettings>
 	<RunConfiguration>
 		<EnvironmentVariables>
-			<HOST>https://mddev7a29df073d88851fdevaos.cloudax.dynamics.com/?cmp=usmf</HOST>
+			<HOST>https://hitachiqac852abe02ab300cedevaos.axcloud.dynamics.com</HOST>
 			<SERVER_HOST>TBD</SERVER_HOST>
 			<BROWSER>Chrome</BROWSER>
 		</EnvironmentVariables>
