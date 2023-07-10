@@ -21,7 +21,7 @@ namespace Demo.Hooks
             this.objectContainer = oc;
         }
 
-        [BeforeScenario(Order = 3)]
+        //[BeforeScenario(Order = 3)]
         public void WhenUserSignsIn(IConfiguration Config)
         {
             if (objectContainer.Resolve<BrowserIndicator>().isNoBrowserFeature)

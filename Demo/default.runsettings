@@ -2,7 +2,7 @@
 <RunSettings>
 	<RunConfiguration>
 		<EnvironmentVariables>
-			<HOST>https://www.hitachi.us</HOST>
+			<HOST>https://global.hitachi-solutions.com/</HOST>
 			<SERVER_HOST>TBD</SERVER_HOST>
 			<BROWSER>Chrome</BROWSER>
 			<OPTIONS>--incognito</OPTIONS>

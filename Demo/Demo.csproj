@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+	<RunSettingsFilePath>$(MSBuildProjectDirectory)\default.runsettings</RunSettingsFilePath>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>ca134d8d-8653-4f4b-84bd-4dfe02ac2b6a</UserSecretsId>
@@ -15,14 +16,15 @@
   </ItemGroup>
 
   <ItemGroup>
-	<PackageReference Include="HitachiQA" Condition="$(Configuration)==Debug" Version="1.0.1" />
-	<PackageReference Include="HitachiQA" Condition="$(Configuration)==Release" Version="1.0.1-CI-20230331-201823" />
-	<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.0" />
-    <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.9.57" />
-    <PackageReference Include="SpecFlow.MsTest" Version="3.9.74" />
-    <PackageReference Include="MSTest.TestAdapter" Version="2.2.10" />
-    <PackageReference Include="MSTest.TestFramework" Version="2.2.10" />
-    <PackageReference Include="FluentAssertions" Version="6.7.0" />
+	  <PackageReference Include="FluentAssertions" Version="6.11.0" />
+	  <PackageReference Include="HitachiQA" Version="1.0.3" />
+	  <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+	  <PackageReference Include="Microsoft.Playwright" Version="1.33.0" />
+	  <PackageReference Include="Microsoft.Playwright.MSTest" Version="1.33.0" />
+	  <PackageReference Include="MSTest.TestAdapter" Version="3.0.2" />
+	  <PackageReference Include="MSTest.TestFramework" Version="3.0.2" />
+	  <PackageReference Include="coverlet.collector" Version="3.1.2" />
+	  <PackageReference Include="SpecFlow.MsTest" Version="3.9.74" />
   </ItemGroup>
 
   <ItemGroup>
