@@ -51,9 +51,6 @@ stages:
     jobs:
     - job: Test
       steps:
-        - download: BuildPipeline
-          artifact: drop
-
         - pwsh: '$(System.DefaultWorkingDirectory)/Demo/bin/Release/net6.0/playwright.ps1 install --with-deps'
 
         - task: DotNetCoreCLI@2
