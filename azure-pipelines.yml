@@ -70,7 +70,7 @@ stages:
         displayName: "Playwright Test"
         inputs:
           command: test
-          arguments: '--settings $(System.DefaultWorkingDirectory)/Demo/default.runsettings --no-build'
+          arguments: '--configuration $(buildConfiguration)'
           projects: '**/Demo.dll'
           feedsToUse: config
           nugetConfigPath: '$(System.DefaultWorkingDirectory)/Demo/Nuget.config'
