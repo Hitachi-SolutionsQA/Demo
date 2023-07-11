@@ -67,7 +67,7 @@ stages:
             ScriptType: FilePath
             scriptName: Playwright Browser
             pwsh: true
-            ScriptArguments: $(System.DefaultWorkingDirectory)/bin/Debug/netX/playwright.ps1 install 
+            ScriptArguments: $(System.DefaultWorkingDirectory)/bin/Debug/net6.0/playwright.ps1 install 
 
         - task: DotNetCoreCLI@2
           inputs:
