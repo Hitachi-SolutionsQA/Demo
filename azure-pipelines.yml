@@ -45,37 +45,37 @@ stages:
     - job: Test
       steps:
           #file transform consumes env variables and replaces them in appsettings.json (they must exist in appsettings.json)
-         - bash: |
+      - bash: |
             echo "##vso[task.setvariable variable=OPTIONS;]--headless"
             echo "##vso[task.setvariable variable=Playwright.Headless;]true"
 
-         #- task: FileTransform@1
-         #  inputs:
-         #    folderPath: '$(System.DefaultWorkingDirectory)/Demo/bin/Release/net6.0/appsettings.json'
-         #    fileType: 'json'
+     #- task: FileTransform@1
+     #  inputs:
+     #    folderPath: '$(System.DefaultWorkingDirectory)/Demo/bin/Release/net6.0/appsettings.json'
+     #    fileType: 'json'
 
-         #- task: PowerShell@2
-         #  inputs:
-         #    targetType: 'inline'
-         #    script: '$(System.DefaultWorkingDirectory)/Demo/bin/Release/net6.0/playwright.ps1 install --with-deps'
+     #- task: PowerShell@2
+     #  inputs:
+     #    targetType: 'inline'
+     #    script: '$(System.DefaultWorkingDirectory)/Demo/bin/Release/net6.0/playwright.ps1 install --with-deps'
 
-        - task: UseDotNet@2
-          inputs:
-            version: 6.0.x
+      - task: UseDotNet@2
+         inputs:
+          version: 6.0.x
 
-        - task: DotNetCoreCLI@2
-          inputs:
-            command: test
-            projects: '**/Demo/.csproj'
-            feedsToUse: config
-            nugetConfigPath: '$(System.DefaultWorkingDirectory)/Demo/Nuget.config' 
-            arguments: '--configuration $(buildConfiguration)' 
+      - task: DotNetCoreCLI@2
+         inputs:
+           command: test
+           projects: '**/Demo/.csproj'
+           feedsToUse: config
+           nugetConfigPath: '$(System.DefaultWorkingDirectory)/Demo/Nuget.config' 
+           arguments: '--configuration $(buildConfiguration)' 
           displayName: 'dotnet test $(buildConfiguration)'
 
-        - task: PublishTestResults@2
-         inputs:
-           testResultsFormat: VSTest
-           testResultsFiles: '**/Videos/**'
-           searchFolder: $(System.DefaultWorkingDirectory)
+      - task: PublishTestResults@2
+        inputs:
+          testResultsFormat: VSTest
+          testResultsFiles: '**/Videos/**'
+          searchFolder: $(System.DefaultWorkingDirectory)
 
 
