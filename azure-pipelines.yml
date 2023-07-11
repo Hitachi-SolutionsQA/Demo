@@ -57,7 +57,7 @@ stages:
           displayName: 'dotnet test $(buildConfiguration)'
 
         - task: PublishTestResults@2
-         inputs:
+          inputs:
            testResultsFormat: VSTest
            testResultsFiles: '**/TestResults/**'
            searchFolder: $(System.DefaultWorkingDirectory)
