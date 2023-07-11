@@ -50,13 +50,20 @@ stages:
     jobs:
     - job: Test
       steps:
-       - task: DotNetCoreCLI@2
+        - task: UseDotNet@2
+          inputs:
+            version: 6.0.x
+
+        - task: DotNetCoreCLI@2
          inputs:
             command: test
-            projects: '**/*Demo/*.csproj'
+            projects: '**/Demo/.csproj'
+            feedsToUse: config
+            nugetConfigPath: '$(System.DefaultWorkingDirectory)/Demo/Nuget.config' 
             arguments: '--configuration $(buildConfiguration)' 
+         displayName: 'dotnet test $(buildConfiguration)'
             
-       - task: PublishTestResults@2
+        - task: PublishTestResults@2
          inputs:
            testResultsFormat: VSTest
            testResultsFiles: '**/TestResults/**'
