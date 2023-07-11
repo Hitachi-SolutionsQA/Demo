@@ -2,18 +2,14 @@
 # Build and test ASP.NET projects.
 # Add steps that publish symbols, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
-
 trigger:
 - main
-
 pool:
   vmImage: 'ubuntu-latest'
-
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-
 stages:
   - stage: Build
     jobs:
@@ -26,7 +22,6 @@ stages:
         - task: UseDotNet@2
           inputs:
             version: 6.0.x
-
         - task: DotNetCoreCLI@2
           inputs:
             command: 'restore'
@@ -34,7 +29,6 @@ stages:
             feedsToUse: config
             nugetConfigPath: '$(System.DefaultWorkingDirectory)/Demo/Nuget.config'
           displayName: 'dotnet restore $(buildConfiguration)'
-
         - task: DotNetCoreCLI@2
           inputs:
             command: 'build'
@@ -46,39 +40,42 @@ stages:
           inputs:
             pathToPublish: '$(System.DefaultWorkingDirectory)'
             artifactName: drop
-
   - stage: Test
     jobs:
     - job: Test
       steps:
-        #file transform consumes env variables and replaces them in appsettings.json (they must exist in appsettings.json)
-      - bash: |
+          #file transform consumes env variables and replaces them in appsettings.json (they must exist in appsettings.json)
+         - bash: |
             echo "##vso[task.setvariable variable=OPTIONS;]--headless"
             echo "##vso[task.setvariable variable=Playwright.Headless;]true"
 
-      #- task: FileTransform@1
-      #  inputs:
-      #    folderPath: '$(System.DefaultWorkingDirectory)/Demo/bin/Release/net6.0/appsettings.json'
-      #    fileType: 'json'
+         #- task: FileTransform@1
+         #  inputs:
+         #    folderPath: '$(System.DefaultWorkingDirectory)/Demo/bin/Release/net6.0/appsettings.json'
+         #    fileType: 'json'
 
-      #- task: PowerShell@2
-      #  inputs:
-      #    targetType: 'inline'
-      #    script: '$(System.DefaultWorkingDirectory)/Demo/bin/Release/net6.0/playwright.ps1 install --with-deps'
+         #- task: PowerShell@2
+         #  inputs:
+         #    targetType: 'inline'
+         #    script: '$(System.DefaultWorkingDirectory)/Demo/bin/Release/net6.0/playwright.ps1 install --with-deps'
 
-      - task: DotNetCoreCLI@2
-        displayName: "Playwright Test"
-        inputs:
-          command: test
-          arguments: '--configuration $(buildConfiguration)'
-          projects: '**/Demo.dll'
-          feedsToUse: config
-          nugetConfigPath: '$(System.DefaultWorkingDirectory)/Demo/Nuget.config'
+        - task: UseDotNet@2
+          inputs:
+            version: 6.0.x
 
-      - task: PublishTestResults@2
-        inputs:
-          testResultsFormat: VSTest
-          testResultsFiles: '**/Screenshots/**'
-          searchFolder: $(System.DefaultWorkingDirectory)/Demo/bin/Release/net6.0
+        - task: DotNetCoreCLI@2
+          inputs:
+            command: test
+            projects: '**/Demo/.csproj'
+            feedsToUse: config
+            nugetConfigPath: '$(System.DefaultWorkingDirectory)/Demo/Nuget.config' 
+            arguments: '--configuration $(buildConfiguration)' 
+          displayName: 'dotnet test $(buildConfiguration)'
+
+        - task: PublishTestResults@2
+         inputs:
+           testResultsFormat: VSTest
+           testResultsFiles: '**/Videos/**'
+           searchFolder: $(System.DefaultWorkingDirectory)
 
 
