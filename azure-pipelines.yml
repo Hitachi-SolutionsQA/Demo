@@ -69,8 +69,16 @@ stages:
       - task: DotNetCoreCLI@2
         displayName: "Playwright Test"
         inputs:
-          command: 'test'
-          projects: '**/Demo.dll'
+          command: test
           arguments: '--settings $(System.DefaultWorkingDirectory)/Demo/default.runsettings --no-build'
+          projects: '**/Demo.dll'
+          feedsToUse: config
+          nugetConfigPath: '$(System.DefaultWorkingDirectory)/Demo/Nuget.config'
+
+      - task: PublishTestResults@2
+        inputs:
+          testResultsFormat: VSTest
+          testResultsFiles: '**/Screenshots/**'
+          searchFolder: $(System.DefaultWorkingDirectory)/Demo/bin/Release/net6.0
 
 
