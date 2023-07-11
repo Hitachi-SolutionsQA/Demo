@@ -57,11 +57,6 @@ stages:
       steps:
         - download: BuildPipeline
           artifact: drop
-    
-        - task: FileTransform@1
-          inputs:
-          folderPath: '$(System.DefaultWorkingDirectory)/Demo/bin/Release/net6.0'
-          fileType: 'json'
 
         - pwsh: '$(System.DefaultWorkingDirectory)/Demo/bin/Release/net6.0/playwright.ps1 install --with-deps'
 
