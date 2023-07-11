@@ -46,3 +46,19 @@ stages:
           inputs:
             pathToPublish: '$(System.DefaultWorkingDirectory)'
             artifactName: drop
+  - stage: Test
+    jobs:
+    - job: Test
+      steps:
+       - task: DotNetCoreCLI@2
+         inputs:
+            command: test
+            projects: '**/*Demo/*.csproj'
+            arguments: '--configuration $(buildConfiguration)' 
+            
+       - task: PublishTestResults@2
+         inputs:
+           testResultsFormat: VSTest
+           testResultsFiles: '**/TestResults/**'
+           searchFolder: $(System.DefaultWorkingDirectory)
+
