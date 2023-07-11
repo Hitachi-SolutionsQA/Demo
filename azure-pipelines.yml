@@ -59,10 +59,6 @@ stages:
      #    targetType: 'inline'
      #    script: '$(System.DefaultWorkingDirectory)/Demo/bin/Release/net6.0/playwright.ps1 install --with-deps'
 
-      - task: UseDotNet@2
-         inputs:
-          version: 6.0.x
-
       - task: DotNetCoreCLI@2
          inputs:
            command: test
