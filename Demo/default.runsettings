@@ -6,6 +6,7 @@
 			<SERVER_HOST>TBD</SERVER_HOST>
 			<BROWSER>Chrome</BROWSER>
 			<OPTIONS>--incognito</OPTIONS>
+			<Playwright.Headless>true</Playwright.Headless>
 		</EnvironmentVariables>
 	</RunConfiguration>
 </RunSettings>
