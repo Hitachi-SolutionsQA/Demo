@@ -10,6 +10,10 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+resources:
+  pipelines:
+  - pipeline: BuildPipeline # identifier for the resource (used in pipeline resource variables)
+    source: "Hitachi-SolutionsQA.Demo.Build"
 stages:
   - stage: Build
     jobs:
@@ -41,7 +45,9 @@ stages:
             pathToPublish: '$(System.DefaultWorkingDirectory)'
             artifactName: drop
   - stage: Test
-    jobs:
+    - download: BuildPipeline 
+      artifact: drop
+      jobs:
     - job: Test
       steps:
         - task: UseDotNet@2
