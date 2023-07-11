@@ -51,20 +51,24 @@ stages:
     jobs:
     - job: Test
       steps:
-        - pwsh: '$(System.DefaultWorkingDirectory)/Demo/bin/Release/net6.0/playwright.ps1 install --with-deps' 
+        #file transform consumes env variables and replaces them in appsettings.json (they must exist in appsettings.json)
+      - bash: |
+        echo "##vso[task.setvariable variable=OPTIONS;]--headless"
+        echo "##vso[task.setvariable variable=Playwright.Headless;]true"
 
-        - task: DotNetCoreCLI@2
-          inputs:
-            command: test
-            projects: '$(solution)'
-            feedsToUse: config
-            nugetConfigPath: '$(System.DefaultWorkingDirectory)/Demo/Nuget.config' 
-            arguments: '--configuration $(buildConfiguration)' 
-          displayName: 'dotnet test'
-            
-        - task: PublishTestResults@2
-          inputs:
-           testResultsFormat: VSTest
-           testResultsFiles: '**/Videos/**'
-           searchFolder: $(System.DefaultWorkingDirectory)/Demo/bin/Release/net6.0
+      - task: FileTransform@1
+        inputs:
+        folderPath: '$(System.DefaultWorkingDirectory)/Demo/bin/Release/net6.0'
+        fileType: 'json'
+
+      - pwsh: '$(System.DefaultWorkingDirectory)/Demo/bin/Release/net6.0/playwright.ps1 install --with-deps'
+
+      - task: DotNetCoreCLI@2
+        displayName: "Playwright Test"
+        inputs:
+          command: 'test'
+          projects: '**/Demo.dll'
+          arguments: '--settings $(System.DefaultWorkingDirectory)/Demo/default.runsettings --no-build'
+          testRunTitle: ${{ parameters.runTitle }}
+
 
