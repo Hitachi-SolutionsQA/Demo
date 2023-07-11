@@ -51,7 +51,7 @@ stages:
     jobs:
     - job: Test
       steps:
-        - pwsh: '$(System.DefaultWorkingDirectory)/Demo/bin/Release/net6.0/playwright.ps1 install --with-deps'
+        - pwsh: '$(System.DefaultWorkingDirectory)/Demo/bin/Release/net6.0/playwright.ps1 install --with-deps' 
 
         - task: DotNetCoreCLI@2
           inputs:
