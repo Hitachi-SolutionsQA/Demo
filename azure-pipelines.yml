@@ -55,13 +55,13 @@ stages:
             version: 6.0.x
 
         - task: DotNetCoreCLI@2
-         inputs:
+          inputs:
             command: test
             projects: '**/Demo/.csproj'
             feedsToUse: config
             nugetConfigPath: '$(System.DefaultWorkingDirectory)/Demo/Nuget.config' 
             arguments: '--configuration $(buildConfiguration)' 
-         displayName: 'dotnet test $(buildConfiguration)'
+          displayName: 'dotnet test $(buildConfiguration)'
             
         - task: PublishTestResults@2
          inputs:
