@@ -46,10 +46,13 @@ stages:
           inputs:
             pathToPublish: '$(System.DefaultWorkingDirectory)'
             artifactName: drop
+
 resources: 
   pipelines:
   - pipeline: 'BuildPipeline'
     source: 'Demo.Build'
+
+
   - stage: Test
     jobs:
     - job: Test
