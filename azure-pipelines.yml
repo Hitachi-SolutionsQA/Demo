@@ -53,8 +53,8 @@ stages:
       steps:
         #file transform consumes env variables and replaces them in appsettings.json (they must exist in appsettings.json)
       - bash: |
-        echo "##vso[task.setvariable variable=OPTIONS;]--headless"
-        echo "##vso[task.setvariable variable=Playwright.Headless;]true"
+            echo "##vso[task.setvariable variable=OPTIONS;]--headless"
+            echo "##vso[task.setvariable variable=Playwright.Headless;]true"
 
       - task: FileTransform@1
         inputs:
