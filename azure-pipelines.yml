@@ -56,6 +56,14 @@ stages:
 
         - task: DotNetCoreCLI@2
           inputs:
+            command: 'restore'
+            projects: '$(solution)'
+            feedsToUse: config
+            nugetConfigPath: '$(System.DefaultWorkingDirectory)/Demo/Nuget.config'
+          displayName: 'dotnet restore $(buildConfiguration)'
+
+        - task: DotNetCoreCLI@2
+          inputs:
             command: test
             projects: '$(solution)'
             feedsToUse: config
