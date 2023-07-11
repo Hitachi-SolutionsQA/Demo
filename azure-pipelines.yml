@@ -69,6 +69,5 @@ stages:
           command: 'test'
           projects: '**/Demo.dll'
           arguments: '--settings $(System.DefaultWorkingDirectory)/Demo/default.runsettings --no-build'
-          testRunTitle: ${{ parameters.runTitle }}
 
 
