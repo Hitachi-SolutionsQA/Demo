@@ -16,8 +16,8 @@ variables:
 
 resources: 
   pipelines:
-  - pipeline: BuildPipeline
-    source: Demo.Build
+  - pipeline: 'BuildPipeline'
+    source: 'Demo.Build'
 
 stages:
   - stage: Build
