@@ -14,6 +14,11 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
+resources: 
+  pipelines:
+  - pipeline: BuildPipeline
+    source: Demo.Build
+
 stages:
   - stage: Build
     jobs:
@@ -50,24 +55,15 @@ stages:
     jobs:
     - job: Test
       steps:
-        - task: UseDotNet@2
+        - download: BuildPipeline
+          artifact: drop
+    
+        - task: FileTransform@1
           inputs:
-            version: 6.0.x
-        
-        - task: DotNetCoreCLI@2
-          inputs:
-            command: 'restore'
-            projects: '$(solution)'
-            feedsToUse: config
-            nugetConfigPath: '$(System.DefaultWorkingDirectory)/Demo/Nuget.config'
-          displayName: 'dotnet restore'  
+          folderPath: '$(System.DefaultWorkingDirectory)/Demo/bin/Release/net6.0'
+          fileType: 'json'
 
-        - task: PowerShell@2
-          inputs:
-            ScriptType: Inline
-            scriptName: Playwright Browser
-            pwsh: true
-            ScriptArguments: $(System.DefaultWorkingDirectory)/bin/Debug/net6.0/playwright.ps1 install 
+        - pwsh: '$(System.DefaultWorkingDirectory)/Demo/bin/Release/net6.0/playwright.ps1 install --with-deps'
 
         - task: DotNetCoreCLI@2
           inputs:
@@ -81,6 +77,6 @@ stages:
         - task: PublishTestResults@2
           inputs:
            testResultsFormat: VSTest
-           testResultsFiles: '**/Screenshots/**'
-           searchFolder: $(System.DefaultWorkingDirectory)
+           testResultsFiles: '**/Screenshots/**', '**/Videos/**', '**/TestExecution.json'
+           searchFolder: $(System.DefaultWorkingDirectory)/Demo/bin/Release/net6.0
 
