@@ -57,15 +57,15 @@ stages:
         - task: DotNetCoreCLI@2
           inputs:
             command: test
-            projects: '**/Demo/.csproj'
+            projects: '$(solution)'
             feedsToUse: config
             nugetConfigPath: '$(System.DefaultWorkingDirectory)/Demo/Nuget.config' 
             arguments: '--configuration $(buildConfiguration)' 
-          displayName: 'dotnet test $(buildConfiguration)'
+          displayName: 'dotnet test'
             
         - task: PublishTestResults@2
           inputs:
            testResultsFormat: VSTest
-           testResultsFiles: '**/TestResults/**'
+           testResultsFiles: '**/Screenshots/**'
            searchFolder: $(System.DefaultWorkingDirectory)
 
