@@ -1,39 +1,64 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-	<RunSettingsFilePath>$(MSBuildProjectDirectory)\default.runsettings</RunSettingsFilePath>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>ca134d8d-8653-4f4b-84bd-4dfe02ac2b6a</UserSecretsId>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<RunSettingsFilePath>$(MSBuildProjectDirectory)\default.runsettings</RunSettingsFilePath>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>ca134d8d-8653-4f4b-84bd-4dfe02ac2b6a</UserSecretsId>
 
-  </PropertyGroup>
+	</PropertyGroup>
 
+<<<<<<< Updated upstream
+	<ItemGroup>
+		<PackageReference Include="FluentAssertions" Version="6.11.0" />
+		<PackageReference Include="HitachiQA" Version="1.0.3" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+		<PackageReference Include="Microsoft.Playwright" Version="1.33.0" />
+		<PackageReference Include="Microsoft.Playwright.MSTest" Version="1.33.0" />
+		<PackageReference Include="MSTest.TestAdapter" Version="3.0.2" />
+		<PackageReference Include="MSTest.TestFramework" Version="3.0.2" />
+		<PackageReference Include="coverlet.collector" Version="3.1.2" />
+		<PackageReference Include="SpecFlow.MsTest" Version="3.9.74" />
+	</ItemGroup>
+=======
   <ItemGroup>
-	  <PackageReference Include="FluentAssertions" Version="6.11.0" />
-	  <PackageReference Include="HitachiQA" Version="1.0.3" />
-	  <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
-	  <PackageReference Include="Microsoft.Playwright" Version="1.33.0" />
-	  <PackageReference Include="Microsoft.Playwright.MSTest" Version="1.33.0" />
-	  <PackageReference Include="MSTest.TestAdapter" Version="3.0.2" />
-	  <PackageReference Include="MSTest.TestFramework" Version="3.0.2" />
-	  <PackageReference Include="coverlet.collector" Version="3.1.2" />
-	  <PackageReference Include="SpecFlow.MsTest" Version="3.9.74" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\FileComparison - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\FileComparison.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\FNODemo - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\HsalSearch.feature.cs" />
   </ItemGroup>
+>>>>>>> Stashed changes
 
-  <ItemGroup>
-    <None Update="appsettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="FNO.runsettings">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="default.runsettings">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-	<None Update="Data/**">
-		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	</None>
-  </ItemGroup>
-	
+	<ItemGroup>
+		<None Update="appsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="FNO.runsettings">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="default.runsettings">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Data/**">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+
+<<<<<<< Updated upstream
 </Project>
+=======
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Features\CRMDemo.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\FNODemo.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+  </ItemGroup>
+
+</Project>
+>>>>>>> Stashed changes
