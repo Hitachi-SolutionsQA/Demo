@@ -44,5 +44,3 @@ stages:
           inputs:
             pathToPublish: '$(System.DefaultWorkingDirectory)'
             artifactName: drop
-
-
