@@ -37,7 +37,7 @@ stages:
             projects: '$(solution)'
           displayName: 'dotnet build $(buildConfiguration)'
         
-        - script: pwsh $(System.DefaultWorkingDirectory)/Demo/bin/Debug/net6.0/playwright.ps1 install --with-deps
+        - script: pwsh $(System.DefaultWorkingDirectory)/Demo/bin/Release/net6.0/playwright.ps1 install --with-deps
 
         - task: PublishBuildArtifacts@1
           inputs:
