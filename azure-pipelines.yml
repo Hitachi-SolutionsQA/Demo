@@ -10,10 +10,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-resources:
-  pipelines:
-  - pipeline: BuildPipeline # identifier for the resource (used in pipeline resource variables)
-    source: "Hitachi-SolutionsQA.Demo.Build"
+  
 stages:
   - stage: Build
     jobs:
@@ -40,9 +37,9 @@ stages:
             projects: '$(solution)'
           displayName: 'dotnet build $(buildConfiguration)'
         
+        - script: pwsh $(System.DefaultWorkingDirectory)/Demo/bin/Release/net6.0/playwright.ps1 install --with-deps
+
         - task: PublishBuildArtifacts@1
           inputs:
             pathToPublish: '$(System.DefaultWorkingDirectory)'
             artifactName: drop
-
-
