@@ -15,6 +15,7 @@ namespace Demo.Pages
         public ILocator SearchInput => Locator("xpath=//*[@id='site-search-keyword']");
         public ILocator SearchButton => Locator("xpath=//button[@aria-label='search']");
         public ILocator ResultSearchHeader => Locator("xpath=//*[@class='results']");
+        public ILocator ThankYouHeader => Locator("xpath=//*[text()='Thank You!']");
 
 
         public ILocator GetMenuItemByName(string itemName)
@@ -24,18 +25,20 @@ namespace Demo.Pages
 
         public ILocator GetButtonByText(string buttonText)
         {
-            return Locator($"//button[@value='{buttonText}']");
+            return Locator($"xpath=//button[@value='{buttonText}'] |" +
+                           $"//*[@class='cta-container']/*[@href and text()='{buttonText}'] |" +
+                           $"//button[text()='{buttonText}']");
         }
 
         public ILocator GetContactFormField(string fieldName)
         {
-            return Locator($"xpath=//*[contains(@class, 'field-type-text')][child::label[text()='{fieldName}']]/descendant::input |" +
-                            $"//*[contains(@class, 'field-type-text')][child::label[text()='{fieldName}']]/descendant::textarea");
+            return Locator($"xpath=//*[text()='{fieldName}']/following-sibling::input |" +
+                            $"//*[text()='{fieldName}']/following-sibling::textarea");
         }
 
         public ILocator GetDropdownOptionByLabel(string dropdownLabel)
         {
-            return Locator($"xpath=//*[@data-field-class='field-type-select'][child::label[text()='{dropdownLabel}']]/descendant::select");
+            return Locator($"xpath=//*[contains(text(), '{dropdownLabel}')]/following-sibling::select");
         }
 
         public ILocator GetFieldToolTip(string fieldName)

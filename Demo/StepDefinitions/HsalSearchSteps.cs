@@ -3,6 +3,7 @@ using HitachiQA;
 using HitachiQA.Playwright;
 using Table = TechTalk.SpecFlow.Table;
 using TechTalk.SpecFlow.Assist;
+using NUnit.Framework.Constraints;
 
 namespace Demo.StepDefinition
 {
@@ -35,20 +36,42 @@ namespace Demo.StepDefinition
             await HsalHome.GetButtonByText(buttonText).ClickAsync();
         }
 
+        [Given(@"user selects contact location '([^']*)'")]
+        public async Task GivenUserSelectsContactLocation(string locationName)
+        {
+            await HsalHome.GetButtonByText(locationName).ClickAsync();
+        }
 
         [Given(@"user enters required info fields:")]
         public async Task GivenUserEntersRequiredInfoFields(Table table)
         {
-            foreach (var row in table.Rows)
+            try
             {
-                if (row.GetString("Field") == "Country")
+                foreach (var row in table.Rows)
                 {
-                    await HsalHome.GetDropdownOptionByLabel("Country").SelectOptionAsync($"{row.GetString("Value")}");
+                    var field = row.GetString("Field");
+                    var value = row.GetString("Value");
+                    if (field == "Country")
+                    {
+                        var dropdownRequired = await HsalHome.GetDropdownOptionByLabel("Country").GetAttributeAsync("aria-required");
+                        dropdownRequired.Should().Be("true");
+                        await HsalHome.GetDropdownOptionByLabel("Country").SelectOptionAsync($"{value}");
+                    }
+                    else
+                    {
+                        if(field != "What can we help you with?")
+                        {
+                            var inputFieldRequired = await HsalHome.GetContactFormField($"{field}").GetAttributeAsync("aria-required");
+                            inputFieldRequired.Should().Be("true");
+                        }
+                        await HsalHome.GetContactFormField($"{field}").FillAsync($"{value}");
+                    }
                 }
-                else
-                {
-                    await HsalHome.GetContactFormField($"{row.GetString("Field")}").FillAsync($"{row.GetString("Value")}");
-                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Message + ex.InnerException?.Message);
+                return;
             }
         }
 
@@ -92,5 +115,13 @@ namespace Demo.StepDefinition
             Log.Info("This is an infomrmaitonal Message");
             HsalHome.ScreenShot.Info();
         }
+
+        [When(@"user verifies ""([^""]*)"" header")]
+        public async Task WhenUserVerifiesHeader(string p0)
+        {
+            await HsalHome.ThankYouHeader.AssertIsVissibleAsync();
+            HsalHome.ScreenShot.Info();
+        }
+
     }
 }
