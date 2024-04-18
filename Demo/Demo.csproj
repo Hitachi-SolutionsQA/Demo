@@ -1,4 +1,4 @@
-﻿﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
@@ -9,10 +9,11 @@
 
 	</PropertyGroup>
 
-<<<<<<< Updated upstream
+
 	<ItemGroup>
 		<PackageReference Include="FluentAssertions" Version="6.11.0" />
-		<PackageReference Include="HitachiQA" Version="1.0.3" />
+		<PackageReference Include="HitachiQA" Version="1.0.1-CI-20230723-184742" />
+		<PackageReference Include="JustMock" Version="2023.2.629.130" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
 		<PackageReference Include="Microsoft.Playwright" Version="1.33.0" />
 		<PackageReference Include="Microsoft.Playwright.MSTest" Version="1.33.0" />
@@ -21,14 +22,6 @@
 		<PackageReference Include="coverlet.collector" Version="3.1.2" />
 		<PackageReference Include="SpecFlow.MsTest" Version="3.9.74" />
 	</ItemGroup>
-=======
-  <ItemGroup>
-    <SpecFlowObsoleteCodeBehindFiles Remove="Features\FileComparison - Copy.feature.cs" />
-    <SpecFlowObsoleteCodeBehindFiles Remove="Features\FileComparison.feature.cs" />
-    <SpecFlowObsoleteCodeBehindFiles Remove="Features\FNODemo - Copy.feature.cs" />
-    <SpecFlowObsoleteCodeBehindFiles Remove="Features\HsalSearch.feature.cs" />
-  </ItemGroup>
->>>>>>> Stashed changes
 
 	<ItemGroup>
 		<None Update="appsettings.json">
@@ -46,19 +39,4 @@
 	</ItemGroup>
 
 
-<<<<<<< Updated upstream
 </Project>
-=======
-  <ItemGroup>
-    <SpecFlowFeatureFiles Update="Features\CRMDemo.feature">
-      <Visible>$(UsingMicrosoftNETSdk)</Visible>
-      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-    </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Features\FNODemo.feature">
-      <Visible>$(UsingMicrosoftNETSdk)</Visible>
-      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-    </SpecFlowFeatureFiles>
-  </ItemGroup>
-
-</Project>
->>>>>>> Stashed changes
