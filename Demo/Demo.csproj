@@ -15,14 +15,14 @@
   </ItemGroup>
 
   <ItemGroup>
-	<PackageReference Include="HitachiQA" Condition="$(Configuration)==Debug" Version="1.0.1" />
+	<PackageReference Include="HitachiQA" Condition="$(Configuration)==Debug" Version="1.0.4" />
 	<PackageReference Include="HitachiQA" Condition="$(Configuration)==Release" Version="1.0.1-CI-20230331-201823" />
-	<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.0" />
+	<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.3" />
     <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.9.57" />
     <PackageReference Include="SpecFlow.MsTest" Version="3.9.74" />
-    <PackageReference Include="MSTest.TestAdapter" Version="2.2.10" />
-    <PackageReference Include="MSTest.TestFramework" Version="2.2.10" />
-    <PackageReference Include="FluentAssertions" Version="6.7.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.1.2" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.1.2" />
+    <PackageReference Include="FluentAssertions" Version="6.11.0" />
   </ItemGroup>
 
   <ItemGroup>

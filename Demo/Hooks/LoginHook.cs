@@ -2,6 +2,7 @@
 using HitachiQA;
 using HitachiQA.Dynamics.FS.Pages;
 using HitachiQA.Hooks;
+using HitachiQA.Hooks.Browsers;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -15,16 +16,18 @@ namespace Demo.Hooks
     public class LoginHook
     {
         ObjectContainer objectContainer;
+        ScenarioInfo scenarioInfo;
 
-        public LoginHook(ObjectContainer oc)
+        public LoginHook(ObjectContainer oc, ScenarioInfo ScenarioInfo)
         {
             this.objectContainer = oc;
+            scenarioInfo = ScenarioInfo;
         }
 
         [BeforeScenario(Order = 3)]
         public void WhenUserSignsIn(IConfiguration Config)
         {
-            if (objectContainer.Resolve<BrowserIndicator>().isNoBrowserFeature)
+            if (!objectContainer.Resolve<BrowserIndicator>().IsBrowserFeature || !scenarioInfo.Tags.Contains("login"))
             {
                 return;
             }
