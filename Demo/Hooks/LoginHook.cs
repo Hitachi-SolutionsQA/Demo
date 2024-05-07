@@ -52,7 +52,8 @@ namespace Demo.Hooks
             progressBar.assertElementNotPresent();
             if(!Page.SubmitButton.assertElementIsVisible(wait_Seconds: 1, optional: true))
             {
-                if(!string.IsNullOrWhiteSpace(Config.GetVariable("mfa.secret", true)))
+                var mfaSecret = Config.GetVariable("mfa.secret", true);
+                if(!string.IsNullOrWhiteSpace(mfaSecret) && mfaSecret.ToLower() !="tbd")
                 {
                     if(Page.Element("//*[text()='Approve sign in request']").assertElementIsVisible(wait_Seconds:1,optional:true))
                     {
