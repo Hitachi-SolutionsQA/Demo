@@ -15,7 +15,7 @@ param (
 $WorkingDirectory = Get-Location
 
 #
-# C:\dev\Authorization\Operations\Build\PsScripts\TestPlanSync\run.ps1 -ENV_LIST "Main" -ADO_PLAN_ID 114314 -ADO_PARENT_SUITE_ID 114315 -DLL_FILEPATH "Source\BH.Auth.Automation.Test\bin\Debug\net6.0\BH.Auth.Automation.Test.dll" -ADO_CLOSE_UNMATCHED_WORKITEMS $True -ADO_CLOSE_UNMATCHED_TESTSUITES $True
+# C:\dev\Authorization\Operations\Build\PsScripts\TestPlanSync\run.ps1 -ENV_LIST "Demo," -ADO_PLAN_ID 114314 -ADO_PARENT_SUITE_ID 123104 -DLL_FILEPATH "Demo\bin\Debug\net6.0\Demo.dll" -ADO_CLOSE_UNMATCHED_WORKITEMS $True -ADO_CLOSE_UNMATCHED_TESTSUITES $True
 #
 
 
