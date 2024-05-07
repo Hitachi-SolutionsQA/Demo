@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+	<RunConfiguration>
+		<EnvironmentVariables>
+			<HOST>https://hs.crm.dynamics.com/main.aspx?appid=d46eb22a-bb86-ea11-a811-000d3a4df816</HOST>
+			<SERVER_HOST>TBD</SERVER_HOST>
+			<BROWSER>Chrome</BROWSER>
+		</EnvironmentVariables>
+	</RunConfiguration>
+</RunSettings>
