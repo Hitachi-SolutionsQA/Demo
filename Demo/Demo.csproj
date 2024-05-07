@@ -15,9 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-	<PackageReference Include="HitachiQA" Condition="$(Configuration)==Debug" Version="1.0.4" />
-	<PackageReference Include="HitachiQA" Condition="$(Configuration)==Release" Version="1.0.1-CI-20230331-201823" />
-	<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.3" />
+    <PackageReference Include="HitachiQA" Version="1.0.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.3" />
     <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.9.57" />
     <PackageReference Include="SpecFlow.MsTest" Version="3.9.74" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.1.2" />
